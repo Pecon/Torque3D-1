@@ -37,7 +37,7 @@
 
 #include <PxPhysicsAPI.h>
 #include <PxExtensionsAPI.h>
-#include <PxDefaultErrorCallback.h>
+#include <PxErrorCallback.h>
 #include <PxDefaultAllocator.h>
 #include <PxDefaultSimulationFilterShader.h>
 #include <PxDefaultCpuDispatcher.h>
@@ -45,9 +45,9 @@
 #include <PxSimpleFactory.h>
 #include <PxFoundation.h>
 #include <PxController.h>
-#include <PxIO.h> 
+#include <PxIO.h>
 
 
 extern physx::PxPhysics* gPhysics3SDK;
 
-#endif // _PHYSX3_
+#endif // _PHYSX3_z
