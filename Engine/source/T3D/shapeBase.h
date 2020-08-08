@@ -687,9 +687,9 @@ public:
       // The thread and image limits should not be changed without
       // also changing the ShapeBaseMasks enum values declared
       // further down.
-      MaxSoundThreads =  4,            ///< Should be a power of 2
-      MaxScriptThreads = 4,            ///< Should be a power of 2
-      MaxMountedImages = 4,            ///< Should be a power of 2
+      MaxSoundThreads =  2,            ///< Should be a power of 2
+      MaxScriptThreads = 2,            ///< Should be a power of 2
+      MaxMountedImages = 8,            ///< Should be a power of 2
       MaxImageEmitters = 3,
       NumImageBits = 3,
       CollisionTimeoutValue = 250      ///< Timeout in ms.
