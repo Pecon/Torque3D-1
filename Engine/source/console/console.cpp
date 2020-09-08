@@ -708,6 +708,41 @@ void errorf(const char* fmt,...)
    va_start(argptr, fmt);
    _printf(ConsoleLogEntry::Error, ConsoleLogEntry::General, fmt, argptr);
    va_end(argptr);
+
+   U32 totalSize = 1;
+
+   for(U32 i = 0; i < gEvalState.getStackDepth(); i++)
+   {
+      if(gEvalState.stack[i]->scopeNamespace && gEvalState.stack[i]->scopeNamespace->mEntryList->mPackage)  
+         totalSize += dStrlen(gEvalState.stack[i]->scopeNamespace->mEntryList->mPackage) + 2;  
+      if(gEvalState.stack[i]->scopeName)  
+      totalSize += dStrlen(gEvalState.stack[i]->scopeName) + 3;
+      if(gEvalState.stack[i]->scopeNamespace && gEvalState.stack[i]->scopeNamespace->mName)
+         totalSize += dStrlen(gEvalState.stack[i]->scopeNamespace->mName) + 2;
+   }
+
+   char *buf = Con::getReturnBuffer(totalSize);
+   buf[0] = 0;
+   for(U32 i = 0; i < gEvalState.getStackDepth(); i++)
+   {
+      dStrcat(buf, "->");
+      
+      if(gEvalState.stack[i]->scopeNamespace && gEvalState.stack[i]->scopeNamespace->mEntryList->mPackage)  
+      {  
+         dStrcat(buf, "[");  
+         dStrcat(buf, gEvalState.stack[i]->scopeNamespace->mEntryList->mPackage);  
+         dStrcat(buf, "]");  
+      }  
+      if(gEvalState.stack[i]->scopeNamespace && gEvalState.stack[i]->scopeNamespace->mName)
+      {
+         dStrcat(buf, gEvalState.stack[i]->scopeNamespace->mName);
+         dStrcat(buf, "::");
+      }
+      if(gEvalState.stack[i]->scopeName)  
+         dStrcat(buf, gEvalState.stack[i]->scopeName);
+   }
+
+   Con::printf("BackTrace: %s", buf);
 }
 
 //---------------------------------------------------------------------------

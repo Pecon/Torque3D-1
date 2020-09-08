@@ -62,7 +62,7 @@ public:
    }
    virtual void process(NetConnection *connection)
    {
-      Con::printf("Mapping string: %s to index: %d", mString.getString(), mIndex);
+      // Con::printf("Mapping string: %s to index: %d", mString.getString(), mIndex);
       connection->mapString(mIndex, mString);
    }
 #ifdef TORQUE_DEBUG_NET
